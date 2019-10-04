@@ -1,12 +1,12 @@
 #include "CountryNetwork.hpp"
 #include <iostream>
 
+using namespace std;
+
 int main()
 {
-    CountryNetwork a;
-    a.loadDefaultSetup();
-    a.printPath();
-    a.reverseEntireNetwork();
-    a.printPath();
-    return 0;
+    for(int i = 0; i < 3; i++)
+    {
+    	cout << "Hi" << endl;
+    }
 }
