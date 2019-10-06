@@ -1,0 +1,49 @@
+1. Binary Search Trees (cont)
+	A. Biggest DS in the class.
+
+	B. Think of tree as an upside down tree. (or family tree.)
+		a. Trunk is root and branches are children.
+
+	D. Key values get greater from all the way left to all the way right.
+		a. If you traverse left from root, you get smaller values.
+		b. If you traverse right from root, you get larger values.
+
+	E. BSTs can have at most 2 children.
+
+	F. Lower left and higher right makes traversing possible. 
+
+	G. With bst you can start at a known index so that you arent searching througt the entire tree.
+
+	H. Psuedo Code.
+
+		1. Set root to crawler.
+		2. if(crawler.key==searchKey)
+				done
+		3. if(search.key < crawlerKey)
+				"visit the left child"
+				crawler = crawler.leftChild
+		4. else
+				"visit the right child"
+				crawler = crawler.rightChild.
+
+		// Repeat 2-4 until search key is found.
+
+	I. Height of tree is defined as the number of "hops" from root to leaf. (hops = number of parents gone through)
+		- Gives the worst case number of operations needed to find any node in the tree. 
+
+	J. Since each level has exponentially more nodes than the previous(1, 2, 4, 8, ...), we can write a formula for number of nodes in the tree as a function of the height.
+
+		*1. N = 2^h+1 - 1. // Gives the number of nodes in a bST of a given height. (h = height, N = size).
+			// Useful to know how many search ops it takes to find any node in the tree, as a function of the size(N).
+
+		 2. Can manip the equation to solve for height.
+
+		 3. Big-O Notation (Drop the constants)
+
+		 	a. O(log N)
+
+		 		i. log(base2)(15) = 3.9
+
+ 		 // BST has better search than LL because you dont have to search through every element
+
+

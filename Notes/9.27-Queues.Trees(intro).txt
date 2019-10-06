@@ -1,0 +1,123 @@
+1. Queue Implementation
+	
+	a. Circular Array Queue
+
+		i. Allow for both head and tail to shift when enqueuing and dequeueing. 
+			- Head indexes the beginning of queue.
+			- tail indexes the end of the queue.
+			- Empty Q => both head and tail point to arr[0].
+
+		ii. Example
+			- enQ(A)
+			- enQ(B)
+			- enQ(C)
+			//Sets A as head and C as tail.
+			- deQ
+			// Removes A and makes B new head. Head is changed to arr[1].
+
+		iii.
+			- if head == tail, array is either full or empty.
+
+		iv. Ex. 2:
+
+			private:
+				int head, tail, qSize;
+				type qArray[MAXSIZE];
+
+			public:
+				constructor:
+					head = tail = 0 // indexing
+					qSize = 0 // Current num of elements.
+
+				enQ(item)
+				{
+					if(not full) // qSize ?= MAXSIZE
+					{
+						qArray[tail] = item;
+						qSize++;
+						tail++; // Tail index shifts with new item.
+					}
+					if(tail is at last array element.
+					{
+						tail = 0;
+					}
+					else{
+						tail++;
+					}
+				}
+
+				type deQ() // Type depends on what you want to return.
+				{
+					type out;
+					if(Qnot empty)
+					{
+						out = qArray[head];
+						qSize--;
+
+						if(head is at last array element)
+						{
+							//make head point to filst array element
+							head = 0;
+						}
+						else{
+							head++;
+						}
+					}
+					else{
+						// print : queue is empty, returning empty <type>
+
+					}
+
+					return out;
+				}	
+
+
+2. Tree intro
+	
+	a. So far we have learned about linear data structures (move either left or right)
+	b. Tree is a non-linear data structure
+	c. Tree is a Hierarchical DS
+
+	d. General Tree
+		i. Each element is called a node.
+		ii. Connected by edges.
+		iii. Parent-child relationships.
+		iv. Cannot have disconnected parts. 
+
+	e. Example C drive
+		i. C: is the root.
+			- C: Branches to Program files, Documents .etc.
+			- Each of these has their own branches.
+
+	f. DOWNLOAD TREE FOR LINUX TO SEE TREE VIEW OF FOLDERS.
+
+	g. Binary Tree.
+		i. Each node has 2 children.
+		ii. One or both children can be NULL.
+		iii. Typically a node has 0, 1 or 2 children.
+
+	h. Elements
+
+		i. Parent
+			- root: top-most node
+			- root is only node without a parent.
+
+		ii. left child
+
+		iii. right child.
+
+	i. Self-similarity // watch a video.
+		i. tree is comprised of smaller sub-trees
+		ii. each subtree has properties of a regular tree
+			- each child can be considered the root of a subtree.
+		iii. Computationally Significant.
+			- can use recursion to apply the same algo to smaller and smaller sub-trees.
+
+	*j. Binary search tree (BST)
+
+		a. A special case of a binary tree, in which the data is ordered. For any node in the tree.
+			i. The nodes in the left subtree have key values.
+			ii. The nodes in the right subtree have key values gretar than or equal to the node value.
+
+
+****// go to play.kahoot.it to take quizzes on common Data Structurs stuff.
