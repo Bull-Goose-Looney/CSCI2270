@@ -1,0 +1,52 @@
+A. Building a BST
+
+	a. PsuedoCode
+
+		i. if(newK < currentKey)
+				go left
+			else(>=)
+				go right
+
+	b. Drnamic self-balancing: every time a node is added, the tree will
+	   check whether it is still complete. If not, it will trigger a rebalancing mechanism.
+
+	   	i. Examples: AVL trees, red-black trees.
+	   	ii. THese examples are self-balancing BSTs.
+
+   	c. Amortization, can have a balancing method that gets called at other times, 
+   	   to amortize the costs of inserts.
+
+   	e. Randomization: maybe the data already has a fairly random distribution? This will result in a fairly balanced tree. 
+
+
+B. Coding
+	
+	a. Class
+
+		i. 
+		struct Node
+		{
+			type key;
+			Node *parent;
+			Node *leftChild;
+			Node *rightChild;
+		};
+
+		private:
+			Node root
+
+			Node insertHelper(Node, Val);
+			Node searchHelper(Node, val);
+			Node deleteHelper(Node, val);
+
+			void destroySubtree(Node); // Recursively delete a subtree of a tree.
+
+		public:
+			init();
+			insert(val);
+			search(val);
+			delete(val);
+			disp();
+			deleteTree(); // Destructor
+
+	b.
