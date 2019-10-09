@@ -29,4 +29,6 @@ public:
   int getQueueEnd() { return queueEnd; }
   std::string* getQueue() { return queue; }
 
+  void display();
+
 };

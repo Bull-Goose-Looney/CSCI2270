@@ -27,5 +27,26 @@ void menu()
 
 int main(int argc, char const *argv[])
 {
+	ProducerConsumer test;
+	for(int i = 0; i < 20; i++) {
 
+		test.enqueue("aaa");
+
+	}
+
+	test.display();
+	cout << endl;
+
+	for(int i = 0; i < 10; i++) {
+
+		test.dequeue();
+	}
+
+	test.display();
+	cout << endl;
+
+
+
+
+	return 0;
 }

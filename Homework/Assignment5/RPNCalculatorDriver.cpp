@@ -6,6 +6,8 @@
 
 #include "RPNCalculator.hpp"
 #include <iostream>
+#include <iomanip>
+
 // you may include more libraries as needed
 
 using namespace std;
@@ -35,27 +37,54 @@ bool isNumber(string s)
 int main()
 {
   // TODO - Declare a stack to hold the operands
+  RPNCalculator calc;
+  string input;
+  float num;
+  bool comp;
+  string tmp;
+
   
   cout << "Enter the operators and operands ('+', '*') in a postfix format" << endl;
-
-  while(true)
+  while(input != "=")
   {
     cout << "#> ";
-    /* TODO
-       1. Read input (operators and operands) until you encounter a "="
-       2. Use the isNumber function to check if the input is an operand
-       3. push all operands to the stack
-       4. If input is not an operand, call the compute function to evaluate
-          the partial expression
-    */
+    getline(cin, input);
+    num = 0.0;
 
+    if(input == "=")
+    {
+        continue;
+    }
+
+    if(isNumber(input))
+    {
+      num = stof(input);
+      calc.push(num);
+    }
+    if(input == "*" || input = "+")
+      comp = calc.compute(input);
+    else
+      cout << "Invalid expression" << endl;
+      continue;
+
+    tmp = input;
   }
 
-  /* TODO - If the stack is empty then print "No operands: Nothing to evaluate" */
+  if(calc.isEmpty()){
+    cout << "No operands: Nothing to evaluate";
+    return 0;
+  }
 
-  /* TODO - Validate the expression
-      1. If valid then print the result
-      2. Else, print "Invalid expression"*/
+  if(isNumber(tmp)) {
+    cout << "Invalid expression" << endl;
+    return 0;
+  }
 
-  return 0;
+  else
+  {
+    Operand *ret = calc.getStackHead();
+    cout << ret->number << endl;
+  }
+
+    return 0;
 }
