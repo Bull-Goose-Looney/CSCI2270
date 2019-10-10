@@ -1,20 +1,12 @@
 /****************************************************************/
-/*                Producer Consumer Driver File                 */
-/****************************************************************/
-/* TODO: Implement menu options as described in the writeup     */
+/*                    Menu based program		                */
 /****************************************************************/
 
 #include "ProducerConsumer.hpp"
 #include <iostream>
-// you may include more libraries as needed
 
 using namespace std;
 
-/*
- * Purpose: displays a menu with options
- * @param none
- * @return none
- */
 void menu()
 {
 	cout << "*----------------------------------------*" << endl;
@@ -27,26 +19,68 @@ void menu()
 
 int main(int argc, char const *argv[])
 {
-	ProducerConsumer test;
-	for(int i = 0; i < 20; i++) {
+	ProducerConsumer prod;
+	// Variables should go outside of switch.
+	string choice;
+    string input;
+    int numItems;
 
-		test.enqueue("aaa");
+    // convert the `choice` to an integer
+    int menuChoice = 0;
 
-	}
+    while(menuChoice != 3)
+    {
+        menu();
+        getline(cin, choice);
+        menuChoice = stoi(choice);
 
-	test.display();
-	cout << endl;
+        switch (menuChoice)
+        {
 
-	for(int i = 0; i < 10; i++) {
+            case 1:
+            {
+            	cout << "Enter the number of items to be produced:" << endl;
+            	getline(cin, input);
+            	numItems = stoi(input);
 
-		test.dequeue();
-	}
+            	for(int i = 0; i < numItems; i++) {
+            		cout << "Item" << i+1 << ":" << endl;
+            		getline(cin, input);
+            		prod.enqueue(input);
+            	}
 
-	test.display();
-	cout << endl;
+                break;
+            }
 
 
+            case 2:
+            {
+            	cout << "Enter the number of items to be consumed:" << endl;
+            	getline(cin, input);
+            	numItems = stoi(input);
 
+            	if(numItems >= prod.queueSize())
+            		numItems = prod.queueSize();
 
-	return 0;
+            		for(int i=0;i<numItems;i++) {
+            			cout << "Consumed: " << prod.peek() << endl;
+            			prod.dequeue();
+            		}
+
+            	if(prod.queueSize() == 0)
+					cout << "No more items to consume from queue" << endl;
+
+                break;
+            }
+
+            case 3:
+            {
+            	cout << "Number of items in the queue:" << prod.queueSize();
+                cout << endl;
+                break;
+            }
+        }
+    }
+
+    return 0;
 }
