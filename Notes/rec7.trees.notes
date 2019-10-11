@@ -1,0 +1,123 @@
+-----------------------------------------------------------
+    Trees, Binary Search Trees
+-----------------------------------------------------------
+
+Tree Definition: A collection of entities called nodes connected by edges.
+Each node contains a value or data, and it may or may not have a child node.
+
+
+Simple: In simple terms, a tree is a data structure that is similar to a
+linked list but instead of each node pointing simply to the next node
+in a linear fashion, each node points to a number of nodes.
+
+
+<Root:> The root of a tree is the node with no parents. There can be at
+most one root node in a tree.
+
+
+-----------------------------------------------------------
+    Types of Binary Trees
+-----------------------------------------------------------
+
+<Full Binary Tree:> *All nodes except leaves* have two children
+
+<Complete Binary Tree:> *Every level* except maybe last level is *completely full*.
+
+<Perfect Binary Tree:> All internal nodes have *two children* and #all leaves at same level.
+
+
+-----------------------------------------------------------
+    Create Binary Tree Example
+-----------------------------------------------------------
+[c++]
+struct Node {
+
+	int data;
+	Node *left;
+	Node *Right;
+};
+[c++]
+
+
+-----------------------------------------------------------
+    Applications
+-----------------------------------------------------------
+
+1. Expression trees are used in compilers
+2. Manipulate Hierarchical data.
+3. #used to implement search algos
+
+-----------------------------------------------------------
+    BT Traversals
+-----------------------------------------------------------
+
+     <L = Left, R = Right, D = Current Node>
+
+	1. LDR: Process left subtree, process the current node data and then process the right
+	subtree
+
+	2. LRD: Process left subtree, process right subtree, process current node data.
+
+	3. DLR: Process current node data, process left subtree, process right subtree.
+
+	4. DRL: Process current node data, process right subtree, process left subtree.
+
+	5. RDL: Process right subtree, process current node data,, process left subtree.
+
+	6. RLD: Process right subtree, process current node data, process left subtree.
+
+
+-----------------------------------------------------------
+    Classification
+-----------------------------------------------------------
+
+A: Preorder (DLR)
+
+	1. Visit root.
+	2. Traverse left subtree in Preorder
+	3. Traverse Right subtree in Preorder
+	4. Example
+
+	[c++]
+	void​ ​ preorder​ ( ​ int​ *root)
+	{
+		if​ (root != ​ NULL​ )
+		{
+			print(root->data);
+			preorder(root->left);
+			preorder(root->right);
+		}
+	}
+	[c++]
+
+B: Inorder (LDR)
+	
+	[c++]
+	void​ ​ inorder​ ( ​ int​ *root)
+	{
+		if​ (root != ​ NULL​ )
+		{
+			inorder(root->left);
+			print(root->data);
+			inorder(root->right);
+		}
+	}
+	[c++]
+
+C: PostOrder (LRD)
+
+	[c++]
+	void​ ​ postorder​ ( ​ int​ *root)
+	{
+		if(root == NULL){
+			return;
+		}
+		postorder(root->left);
+		postorder(root->right);
+		print(root->data);
+	}
+	[c++]
+
+traversal techniques can be done using both using #recursion and iterative
+techniques, However for this class we will only focus on recursive techniques, since it is much
+simpler and easy to understand.
