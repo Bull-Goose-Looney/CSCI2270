@@ -1,0 +1,29 @@
+[	/*
+	{ "keys": ["ctrl+u"], "command": "soft_undo" },
+	{ "keys": ["ctrl+shift+u"], "command": "soft_redo" },
+	
+
+
+
+	*/
+
+	{ "keys": ["ctrl+d"], "command": "toggle_side_bar" },
+
+	{ "keys": ["ctrl+shift+d"], "command": "toggle_distraction_free" },
+	{ "keys": ["shift+backspace"], "command": "right_delete" },
+	{ "keys": ["ctrl+;"], "command": "undo" },
+	{ "keys": ["shift+;"], "command": "redo" },
+
+	{ "keys": ["ctrl+left"], "command": "move", "args": {"by": "words", "forward": false} },
+	{ "keys": ["ctrl+right"], "command": "move", "args": {"by": "word_ends", "forward": true} },
+	{ "keys": ["ctrl+shift+left"], "command": "move", "args": {"by": "words", "forward": false, "extend": true} },
+	{ "keys": ["ctrl+shift+right"], "command": "move", "args": {"by": "word_ends", "forward": true, "extend": true} },
+	{ "keys": ["alt+shift+up"], "command": "select_lines", "args": {"forward": false} },
+	{ "keys": ["alt+shift+down"], "command": "select_lines", "args": {"forward": true} },
+
+	{ "keys": ["ctrl+a"], "command": "select_all" },
+	{ "keys": ["ctrl+7"], "command": "toggle_comment", "args": { "block": false } },
+	{ "keys": ["ctrl+shift+7"], "command": "toggle_comment", "args": { "block": true } }
+
+
+]
