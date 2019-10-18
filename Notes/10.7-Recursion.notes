@@ -1,5 +1,8 @@
-Recursion 0
+Recursion
 
 A. We are used to functions calling other functions.
 B. Recursion means a function calling instances of itself.
 C. For a proper recursive fn, the algo needs to eventually reach the base case.
+
+
+

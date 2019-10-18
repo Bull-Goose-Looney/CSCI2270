@@ -8,7 +8,7 @@ Each node contains a value or data, and it may or may not have a child node.
 
 Simple: In simple terms, a tree is a data structure that is similar to a
 linked list but instead of each node pointing simply to the next node
-in a linear fashion, each node points to a number of nodes.
+in a linear fashion, each node points to a number of nodes
 
 
 <Root:> The root of a tree is the node with no parents. There can be at
