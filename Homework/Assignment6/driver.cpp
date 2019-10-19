@@ -83,6 +83,8 @@ int main(int argc, char const *argv[]) {
 	string docFile = argv[2];
 
 	readFile(movieFile, m);
+	
+	
 }
 
 
