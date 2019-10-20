@@ -1,7 +1,8 @@
 #include "MovieTree.hpp"
 #include <iostream>
 #include <string>
-#include<fstream>
+#include <iomanip>
+#include <fstream>
 #include <sstream>
 
 using namespace std;
@@ -9,23 +10,28 @@ using namespace std;
 // MovieNode: node struct that will be stored in the MovieTree BST
 
 MovieTree::MovieTree() {
-  //write your code
-	ranking = 0;
-	title = "";
-	year = 0;
-	rating = 0.0;
+	root = NULL;
+}
 
+void destroyTree(MovieNode *crl) {
+	if(crl) {
+		destroyTree(crl->left);
+		destroyTree(crl->right);
+		delete crl;
+		crl = NULL;
+	}
 }
 
 MovieTree::~MovieTree() {
-
+	destroyTree(root);
 }
+
 
 //------------PRINT---------------------
 void printHelper(MovieNode *current) {
 	if(current) {
 		printHelper(current->left);
-		cout << ​ "Movie: "​ << current->title << ​ " "​ << current->rating << ​ endl​;
+		cout <<  "Movie: " << current->title <<  " " << current->rating << endl;
 		printHelper(current->right);
 	}
 }
@@ -34,8 +40,9 @@ void MovieTree::printMovieInventory() {
 
 	if(root!=NULL) 
 		printHelper(root);
-	else
-		cout ​ << ​ "Tree is Empty. Cannot print"​ << ​ endl​;
+	else {
+		cout  <<  "Tree is Empty. Cannot print" <<  endl;
+	}
 	
 }
 //--------------------------------------
@@ -69,36 +76,82 @@ void MovieTree::addMovieNode(int ranking, string title, int year, float rating) 
   	root = m;
 
 }
-//--------------------------------------
-bool searchHelper(MovieNode *crawl, string title) {
-	if(crawl == NULL)
-		return false;
-	if(crawl->title == title) {
-		cout << "Movie Info: "<< endl;
-		cout << "==================" << endl;
-		cout << "Ranking :"​<< crawl->ranking <<​ endl;
-		cout << "Title :"<< crawl->title <<​ endl;
-		cout << "Year :"​<< crawl->year <<​ endl;
-		cout << "rating :"​<< crawl->rating <<​ endl;
-		return true;
+//----------------SEARCH-------------l-------------
+void searchHelper(MovieNode *crawl, string title) {
+	if(crawl == NULL) {
+		cout << "Movie not found." << endl;
+		return;
 	}
-	else if(title < crawl->title)
-		searchHelper(crawl->left, title);
-	else if(title < crawl->title)
-		searchHelper(crawl->right, title);
-}
+	else {
 
+		if(crawl->title == title) {
+			cout << "Movie Info: "<< endl;
+			cout << "==================" << endl;
+			cout << "Ranking:"<< crawl->ranking <<endl;
+			cout << "Title  :"<< crawl->title <<endl;
+			cout << "Year   :"<< crawl->year <<endl;
+			cout << "rating :"<< crawl->rating <<endl;
+			return;
+		}
+
+		else if(title < crawl->title)
+			searchHelper(crawl->left, title);
+		else if(title > crawl->title)
+			searchHelper(crawl->right, title);
+	}
+
+}
 void MovieTree::findMovie(string title) {
-  
-  if(searchHelper(root, title)==false)
-  	cout <<"Movie not found."<< endl;
-
+  searchHelper(root, title);
 }
+//---------------------------------------------------
 
+//-----------Find Movies w/ rating & year------------
+void queryHelper(MovieNode *crawl, float r, int y) { //DLR Traverse
+	if(crawl) {
+		
+		if(crawl->rating >= r && crawl->year >= y)
+			cout << crawl->title << "(" << crawl->year << ") " << crawl->rating << endl;
+		queryHelper(crawl->left,r,y);
+		queryHelper(crawl->right,r,y);
+	}
+}
 void MovieTree::queryMovies(float rating, int year) {
-  //write your code
+  if(root == NULL)
+  	cout << "Tree is Empty. Cannot query Movies" << endl;
+  else {
+  	cout << "Movies that came out after " << year << " with rating at least "
+  	<< rating << ":" << endl;
+  	queryHelper(root, rating, year);
+  }
 }
+//--------------------------------------------------
 
-void MovieTree::averageRating() {
-  //write your code
+//-------------Calculate average ratings------------
+int sumNodes(MovieNode *crl) {
+	int count = 1;
+	if(crl->left)
+		count += sumNodes(crl->left);
+	if(crl->right)
+		count += sumNodes(crl->right);
+	return count;
 }
+float averageHlpr(MovieNode *crl) {
+	float sum = crl->rating;
+	if(crl->left)
+			sum += averageHlpr(crl->left);
+	if(crl->right)
+			sum += averageHlpr(crl->right);
+	return sum;
+}
+void MovieTree::averageRating() {
+	if(!root){
+		cout << "Average rating:0.0" << endl;
+		return;
+	}
+	else {
+		float avg = averageHlpr(root) / sumNodes(root);
+  	cout << "Average rating:" << setprecision(6) << avg << endl;
+	}
+}
+//---------------------------------------------

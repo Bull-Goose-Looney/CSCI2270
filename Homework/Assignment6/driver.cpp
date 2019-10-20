@@ -1,4 +1,5 @@
 #include "MovieTree.hpp"
+#include <string>
 #include <iostream>
 #include <fstream>
 
@@ -31,11 +32,25 @@ int split (string str, char c, string fill[])
         {
             word = word + str[i];
         }
-    }
+    } 
     return counter;
 }
 
-int readFile(string fileName, MovieTree m) {
+void displayMenu() {
+
+	cout <<  "======Main Menu======" << endl;
+	cout<< "1. Find a movie" <<  endl;
+	cout << "2. Query movies" <<  endl;
+	cout<< "3. Print the inventory" << endl;
+	cout << "4. Average Rating of movies" <<  endl;
+	cout << "5. Quit" << endl;
+
+}
+ 
+int main(int argc, char const *argv[]) {
+	
+	MovieTree m;
+	string movieFile = argv[1];
 
 	ifstream data;
 	data.open(movieFile);
@@ -51,7 +66,7 @@ int readFile(string fileName, MovieTree m) {
 
 		while(getline(data, line)) {
 
-			split(line, ",", temp);
+			split(line, ',', temp);
 			rank = stoi(temp[0]);
 			title = temp[1];
 			year = stoi(temp[2]);
@@ -59,37 +74,49 @@ int readFile(string fileName, MovieTree m) {
 			m.addMovieNode(rank, title, year, rating);
 		}
 		data.close();
-		return 1;
 	}
-	else
-		return 0;
+
+	string input;
+	int choice = 0;
+	float rate;
+	int date;
+
+	while(choice!=5) {
+		displayMenu();
+		getline(cin, input);
+		choice = stoi(input);
+		switch(choice) {
+			case 1: {
+				cout << "Enter title:" << endl;
+				getline(cin, input);
+				m.findMovie(input);
+				break;
+			}
+			case 2: {
+				cout << "Enter minimum rating:" << endl;
+				getline(cin, input);
+				rate = stof(input);
+
+				cout << "Enter minimum year:" << endl;
+				getline(cin, input);
+				date = stoi(input);
+
+				m.queryMovies(rate, date);
+				break;
+			}
+			case 3: {
+				m.printMovieInventory();
+				break;
+			}
+			case 4: {
+				m.averageRating();
+				break;
+			}
+			case 5: {
+				cout << "Goodbye!" << endl;
+				break;
+			}
+		}
+	}
+	return 0;
 }
-
-void displayMenu() {
-
-	cout​ << ​ "======Main Menu======"​ << ​ endl​;
-	cout​ << "1. Find a movie"​ << ​ endl​;
-	cout​ << "2. Query movies"​ << ​ endl​;
-	cout​ << "3. Print the inventory"​ << ​ endl​;
-	cout​ << "4. Average Rating of movies"​ << ​ endl​;
-	cout​ << "5. Find a movie"​ << ​ endl​;
-
-}
- 
-int main(int argc, char const *argv[]) {
-	
-	MovieTree m;
-	string movieFile = argv[1];
-	string docFile = argv[2];
-
-	readFile(movieFile, m);
-	
-	
-}
-
-
-
-
-
-
-
