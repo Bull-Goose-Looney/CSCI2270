@@ -1,0 +1,59 @@
+Delete a Node
+-------------
+
+delete(root, value); // Calls a member funciton 
+	deleteHelper(root, value); // Takes in pointer to a Node
+
+Node deleteHelper(node, value);
+
+Algo:
+
+1) Node == nullptr; // Either an empty tree or base case after delete.
+   return nullptr;
+
+2) if(value < node)
+	recursively traverse to left child
+3) if(value > node)
+	recursively traverse to right child
+4) Node found
+	4 Possible cases\
+	------------------
+	1) Node has no children
+		-delete node
+		-node = nullptr;
+
+	2) Node only has right child.
+		-Replace node with the right subtree
+
+	3) Node only has left child.
+		-Replace node with left subtree
+
+	4) Node has both children
+		i. find the min value of the right subtree. (or max of right subtree)
+		
+		ii. Replace node that is to be deleted with the min value of the right subtree.
+				-if min value has a right child, move that child to where min value was.
+				
+		iii. move min's RC to replace min.
+		
+
+	eg. delete(8);
+			root = deleteHelper(root, 8);
+			minOfRight = min(node->right);
+			node->key = minOfRight->key;
+			node->right = deleteHelper(node->right, minOfRight->key);
+
+Destructor:
+
+[c++]
+BinaryST::~BinaryST() {
+	if(root!=nullptr) {
+
+		destructorHelper(root); // Deletes entire tree. 
+		root = nullptr;
+	}
+	else()
+}
+[c++]
+
+
