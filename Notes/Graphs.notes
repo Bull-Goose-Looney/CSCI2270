@@ -1,0 +1,29 @@
+Graph: A graph is a pair (V, E), where V is a set of nodes, called vertices
+and E is a collection of pairs of vertices, called edges.
+
+Directed Edge: 
+	-Ordered pair of vertices (u, v)
+	-First vertex u is the origin
+	-Second vertex v is the destination
+
+0 - Initialize queue
+
+Breadth First search:
+[c++]
+// 0 Initialize queue
+
+vertex = search(value) // 1
+vertex.visited = true; // 2
+queue.enqueue(vertex); // 3
+while(!queue.isEmpty()) { // 4
+	n = queue.dequeue(); // 5
+	for(int x = 0; x < n.adjacent.end; x++) { // 6
+		if(!n.adjacent[x].visited) { // 7
+			n.adjacent[x].visited = true; // 8
+			print(n.adjacent[x].v.key); // 9
+			queue.enqueue(n.adjacent[x].v); // 10
+		}
+	}
+}
+
+
