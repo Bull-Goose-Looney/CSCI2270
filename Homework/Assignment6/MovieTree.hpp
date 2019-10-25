@@ -2,7 +2,7 @@
 
 using namespace std;
 
-struct MovieNode{
+struct MovieNode {
     int ranking;
     string title;
     int year;
@@ -21,7 +21,7 @@ struct MovieNode{
 };
 
 
-class MovieTree{
+class MovieTree {
     private:
         MovieNode* root;
 
