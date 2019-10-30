@@ -193,7 +193,7 @@ Node* BST::getMinValueNode(Node* currNode){
 // SILVER TODO Complete the implementation of this function
 Node* BST::deleteNode(Node *currNode, int value)
 {
-
+// 
 
   if(currNode == NULL)
   {
