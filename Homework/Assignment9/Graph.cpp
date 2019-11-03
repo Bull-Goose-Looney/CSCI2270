@@ -252,7 +252,3 @@ bool Graph::checkBipartite() {
 
 	return true;
 }
-
-
-
-
