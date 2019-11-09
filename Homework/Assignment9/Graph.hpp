@@ -14,7 +14,7 @@ struct vertex{
     vertex() {
         this->visited = false;
         this->distance = 0;
-        this ->pred = NULL;
+        this->pred = NULL;
     }
     string name;
     bool visited;
