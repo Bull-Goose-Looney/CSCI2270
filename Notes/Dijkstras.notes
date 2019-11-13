@@ -1,0 +1,85 @@
+		     NOTES: Dijkstra's Algo
+===================================================
+- BFS will not work with weights
+- Flight routing number of layovers
+  (BFS) vs. Total Distance (Dijkstras)
+- Goal is to find path with lowest weight from a-b.
+
+					Steps:
+--------------------------------------------
+1. Start at A, mark as "solved" or "visited"
+	 and add to *solved list.*
+2. Set Distance of A to zero since it takes
+	 zero distance to get from a to a.
+3. Traverse the entire solved list
+		a. Scan A's adj list and find unsolved
+			 vertex that is CLOSEST to a.
+		b. Mark closest vertex as solved and add
+			 to solved list.
+4. Traverse the entire solved list again.
+		a. Scan A's adj list and find un-solved ver-
+		   tex nearest to A.
+		b. Scan B's adj list and find un-solved ver-
+			 tex nearest A.
+		c. Mark the closest vertex (from a to b) as solved.
+5. Traverse entire solved list again again
+		a. Scan A's adj list, closest == e(5)
+		b. Scan B's adj list, closest == none
+		c. Scan C's adj list, closest == D(3)
+		d. min(a,b,c) = d(3).
+		e. Note that only d is marked as solved
+
+
+- Repeat steps until all paths are traversed and
+choose the shortest ones.
+
+Components:
+- Solved list (linked List)
+- vStart
+- vEnd
+
+==============================================
+SUDO CODE: Dijkstras algo; w/vector
+==============================================
+vStart = search(start)
+vEnd = search(end)
+vStart.solved = true;
+// USE A LINKED LIST (VECTOR) FOR SOLVED LIST
+solvedList.add(vStart)
+
+// Main loop
+While(!vEnd.solved) {
+	//Set minimum distance to some "huge" value
+	minDist = INT_MAX;
+	// need a temporary pointer
+	solvedV = null;
+
+	// iterate acress the list of solved vertices
+	for(x=0 to solvedList.size())
+		s = solvedList(x);
+		// now iterate across s's adjList
+		for(y=0 to s.adj.size())
+		// Only visit unsolved
+		if(!s.adjList[y].v.solved) {
+			dist = s.distance + s.adjList[y]
+			// now, check if this distance is less
+			// than smallest distance yound so for
+			if(dist < minDist) {
+				// set solved vertex
+				solvedV = s.adjList[y].v
+				minDist = dist
+				// set pointer to keep track of the path
+				s.adjlist[y].v.parent = s
+			}
+
+		}
+		solvedV.distance = minDist;
+		solvedV.parent = parent;
+		solvedV.solved = true;
+		solvedList.add(solvedV);
+
+} // WHILE LOOP BRACKET
+
+return vEnd;
+=============================================
+
