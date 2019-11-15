@@ -2,6 +2,8 @@
 #include <queue>
 #include <iostream>
 #include <string>
+#include <stack>
+
 using namespace std;
 
 // Connects v1 and v2 to eachother.
@@ -142,51 +144,18 @@ vertex* Graph::DijkstraAlgorithm(string start, string end) {
 }
 
 
-int shortPathHelper(string start, string end, vector<vertex*>vertices) {
-	int minDist = 1000;
-	int SLsize;
-	int adjSize;
-	int dist;
-
-	vertex *vStart = search(start, vertices);
-	vertex *vEnd = search(end, vertices);
-	vertex *solvedV = NULL;
-	vertex *s = NULL;
-
-	// If either vertex isnt found
-	if(vStart==NULL||vEnd==NULL)
-		return 0;
-
-	vector<vertex*>solvedList; //solved list
-	solvedList.push_back(vStart); // Starting vertex solved as 0;
-	vStart->distance = 0; // 0 away from itself
-	vStart->visited = true;
-
-	while(!vEnd->visited) {
-		minDist = 1000;
-		SLsize = solvedList.size();
-		for(int i = 0; i < SLsize; i++) { // Loop through entire solvedL
-			s = solvedList[i]; // Store solved in temp look at its adjlist
-			adjSize = s->adj.size();
-			for(int x = 0; x < adjSize; x++) { // Loop through s's adjlist
-				if(!s->adj[x].v->visited) { // only check visited.d
-				 	dist = s->distance + s->adj[x].weight; // Distance chk
-					if(dist < minDist) {
-						solvedV = s->adj[x].v; // This is next solved vertex
-						minDist = dist; // Set new minDist
-						s->adj[x].v->pred = s;
-					}
-				}
-			}
-		}
-		solvedV->distance = minDist;
-		solvedV->visited = true;
-		solvedList.push_back(solvedV);
-	} // While end
-
-	return vStart->distance;
-}
-
 void Graph::shortestpath(string start, string end) {
-	cout << shortPathHelper(start, end, vertices) << " ";
+	vertex *v = search(end, vertices);
+	stack<string>names;
+
+
+	while(v!=NULL) {
+		names.push(v->name);
+		v = v->pred;
+	}
+
+	while(!names.empty()) {
+		cout << names.top() << " ";
+		names.pop();
+	}
 }

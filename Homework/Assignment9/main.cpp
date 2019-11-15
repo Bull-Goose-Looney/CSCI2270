@@ -20,6 +20,6 @@ int main(int argc, char const *argv[]) {
 	g.addEdge("Cheyenne", "Denver", 10);
 
 	g.displayEdges();
-	g.DijkstraAlgorithm("Aurora", "Fruita");
+	g.shortestpath("Aurora", "Fruita");
 
 }
