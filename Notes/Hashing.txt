@@ -1,0 +1,133 @@
+# Hash Tables 
+
+	+ Definition: A data structure that stores records in a linear structure, such as array. 
+	+ The index of the array is calculated for each element (record) by a hashing function
+	+ Example: If I have four records to store: Anna, Jamie, Bryan, Laura
+
+## Two Components
+
+- 1) Hash Function:
+   	- [Generates Unique code]that corresponds to a valid array index.
+	- [Is Repeatable]  hashF(Laura)=>3, [i get 3 every time]
+
+- 2). Hash table
+	a. It's an array
+
+# Types of Hash Functions // There are many kinds.
+
+## 1) Mod-of-Sum
+
+- sum all the values in a string, then mod by array length.
+
+- ex: take ascii value of each letter of someones name. add them up as the sum in the hash  table.
+
+- Sudo:
+
+	int hashSumMod(key, tableSize)
+		sum = 0;
+		for i = 0 key.size()-1
+			sum = sum + key(i)
+		return sum & tableSize;
+
+## 2) Multiplicative Hash Function:
+
+1) Sum all the ascii vals of key;
+		int hash = 0;
+		// Sum of key should be calculated [Like mod-of-sum]
+
+2) Multiply by a const. decimal between 0 and 1.
+		A = 13/32;
+		hash = A * hash;
+
+3) Keep the fractional part
+		hash = fract(hash); [// 3.14 -> 0.14]
+
+4) Multiply by table size
+		hash = hash * tableSize;
+		return hash;
+
+## Cryptographic hash functions
+
+- Maps a "message" of anf size to a hash val of fixed size
+- One-way fn not invertible
+- lots of security applications
+
+# Operations 
+
+- [*Store Record (insert)*]
+	1. Compute the index value (hash(key))
+	2. Write data to the table (array) at the index
+
+- [*Retrieve Record (search)*]
+	1. Use hash function to calculate the index
+	2. Read data from the array at the index.
+
+-  *What about operation costs?*
+	+ There is no need to traverse with HT
+	+ Does not depend on key size
+	+ No need to traverse other elements
+	+ Access for array is O(1)
+	*+ [Both store and retrieve (insert and search) have a cost of O(1)!!]
+
+-  Colision
+	+ When 2 records hash to the same index in hash table.
+
+## Dealing With Colisions
+
+### Open addressing
+- if location in table is occupied, find some other available location
+	+ Need another algo that finds an open spot.(linear probing)
+	
+
+	+ linear probing 
+		-finds next available location in array
+		```python
+			index = hash(record.key)
+			while(table[index] is occupied)
+				index++
+			table[index] = record
+		```
+
+	+ Double Hashing
+		* Hash something again by multiplying hash by const.
+		* [tableSize]- important member
+
+
+	+ Quadratic Hashing
+		* Instead of looking at the next adjacent slot, skip over by i^2
+		  indecies
+
+		  // Could cause over-use of memory. 
+
+
+### Chaining
+	- Using a Linked List. Each element in hash table is head of a ll
+
+
+### Clustering (Downside of linear probing)
+	- Elements are likely to get bunched up in one area of the table.
+
+
+## ADT
+	1. Hash Function
+	2. Hash Table
+
+- Perfect hash function would have 0 collisions and perfectly fill a hash table
+- Perfect hash functions are not realistic so we have:
+	1.) Open Addressing
+		* Linear probing
+		* Quadratic Hashing
+		* Double hashing
+		
+	2.) Chaining
+		* Each element in table is head of LL.
+
+
+## Universal Hashing
+
+- Uses a family of hashing fn's and randomly picks a fn for each hash
+
+## Load Factor
+	n is the number of records, then load factor can be calculated as: loadFactor = n/tableSize
+
+- Keeping [loadFactor] < 1 and num of collisions minimal will give a [performance close to O(1)]
