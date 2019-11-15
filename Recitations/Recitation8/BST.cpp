@@ -113,8 +113,6 @@ Node* BST:: addNodeHelper(Node* currNode, int data)
     return currNode;
 
 }
-
-
 void BST:: addNode(int data)
 {
     root = addNodeHelper(root, data);
@@ -193,7 +191,7 @@ Node* BST::getMinValueNode(Node* currNode){
 // SILVER TODO Complete the implementation of this function
 Node* BST::deleteNode(Node *currNode, int value)
 {
-// 
+//
 
   if(currNode == NULL)
   {
