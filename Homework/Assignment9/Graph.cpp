@@ -128,7 +128,7 @@ vertex* Graph::DijkstraAlgorithm(string start, string end) {
 					if(dist < minDist) {
 						solvedV = s->adj[x].v; // This is next solved vertex
 						minDist = dist; // Set new minDist
-						s->adj[x].v->pred = s;
+						s->adj[x].v->pred = s; // Set 
 					}
 				}
 			}

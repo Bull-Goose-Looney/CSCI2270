@@ -11,6 +11,7 @@ using namespace std;
 void split(int* &arr, int* &even_arr, int* &odd_arr, int size, int &even_size, int &odd_size)
 {
 	//Implement this function
+    cout << *&arr << endl;
 }
 
 void printArray(int* arr, int size) {
@@ -27,7 +28,7 @@ int main(int argc, char* argv[])
 {
     if(argc<2)
     {
-      cout<<"usage: a.out <#>";
+      cout<<"usage: a.out <#>"<<endl;
       return -1;
     }
 
