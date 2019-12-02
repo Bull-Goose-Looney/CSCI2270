@@ -15,10 +15,8 @@ struct node
 class HashTable
 {
     int tableSize;  // No. of buckets (linked lists)
-
     // Pointer to an array containing buckets
     node* *table;
-
     node* createNode(int key, node* next);
     
 public:
