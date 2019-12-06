@@ -5,22 +5,18 @@
 #include<iostream>
 using namespace std;
 
-struct vertex;
-struct adjVertex{
+struct shop;
+struct similarShops{
     vertex *v;
     float distance;
 };
 
-struct vertex{
-    vertex() {
-        this->visited = false;
-        this->distance = 0;
-    }
+struct shop{
     string name;
     string[] airFrames;
+    PartsTable parts;
     bool visited;
-    int distance;
-    vector<adjVertex> adj;
+    vector<similarShops> adj;
 };
 
 class ShopGraph {
@@ -30,13 +26,8 @@ class ShopGraph {
         void displayShopsData();
         void DFT(string sourceVertex);
         void setAllVerticesUnvisited();
-        /*
-        vertex* DijkstraAlgorithm(string start, string end);
-        void shortestpath(string start, string end);
-        */
     private:
-        vector<vertex*> vertices;
-        PartsTable inventory;
+        vector<shop*> shops;
 };
 
 #endif

@@ -1,0 +1,19 @@
+#Parts Tracker
+
+## ShopGraph
+    - Shops are connected based on similar AirFrames.
+    - Edge weight = Distance between shops.
+    - Each vertex is a shop.
+## Shops
+    - Each shop has a hashTable of parts.
+    - Each shop can:
+        - Decrement/Increment Part Counters.
+        - Add new parts.
+        - Delete parts.
+        - Change Location of parts.
+        - Order Parts
+        - Search PartsTable
+        - Request parts from other shop.
+
+## Parts
+    - 

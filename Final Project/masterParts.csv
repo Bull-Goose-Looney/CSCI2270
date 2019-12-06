@@ -1,7 +1,5 @@
-Fan_Turbine_Inlet_Temperature_Sensor,1234567,F16
-Main_Fuel_Control,33443434,F15,F16,A10
-Engine,0000001,F16,F15
+Fan_Turbine_Inlet_Temperature_Sensor,1234567,AmParts,$400.89,F16,F15
+Main_Fuel_Control,33443434,Quality Parts Co.,$33,291.33,F15,F16,A10
+Engine,0000001,Pratt & Whitney, $3,000,000.00,F16,F15
 
 
-
-	#This is simulating a master parts list for one or multiple airframes. This data is given for each airframe before a shop is established. Will add as a command line argument.
