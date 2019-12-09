@@ -1,33 +1,48 @@
 #ifndef SHOP_HPP
 #define SHOP_HPP
 #include "Parts.hpp"
-#include<vector>
-#include<iostream>
+#include <vector>
+#include <iostream>
+#include <string>
 using namespace std;
 
+class PartsTable;
 struct shop;
-struct similarShops{
-    vertex *v;
-    float distance;
+struct similarShop{
+    shop *s;
 };
 
+// Shop node contains hash table of parts.
 struct shop{
+    shop() {
+        this->Airframe = "";
+        this->visited = false;
+        this->distance = 0;
+    }
+    int bNum;
+    PartsTable inventory;
     string name;
-    string[] airFrames;
-    PartsTable parts;
+    string Airframe;
+    string address;
     bool visited;
-    vector<similarShops> adj;
+    int distance;
+    vector<similarShop> adj;
 };
 
 class ShopGraph {
     public:
-        void addEdge(string shop1, string shop2, float dist, float driveTime);
-        void addVertex(string shopName);
-        void displayShopsData();
-        void DFT(string sourceVertex);
-        void setAllVerticesUnvisited();
+        void addEdge(string shop1, string shop2, float dist);
+        void addShop(string shopName);
+        void loadParts(shop *s);
+        void displayShopData(shop *s);
+        void setAllShopsUnvisited();
+        void setAirframe(shop *s);
+        void inquiry(int pNum, string af);
+        shop* search(string sName);
+        shop* setHome(string sName);
     private:
         vector<shop*> shops;
+        shop *home;
 };
 
 #endif

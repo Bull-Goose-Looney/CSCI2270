@@ -7,8 +7,8 @@ struct part {
     int partNumber;
     string partName; // Nomenclature
     string shopCode; // Owning shop
-    int bNum; // Bin number
-    int dNum; // Drawer/Shelf number
+    string airframes[3]; // Compatible aircraft
+    string location;
     int quantity; // Number of same part available
     string manufacturer;
     float cost;
@@ -16,14 +16,16 @@ struct part {
 };
 
 class PartsTable {
-    int tableSize; // No. of buckets (linked lists)
+    int tableSize; // Number of linked lists
     part* *table; // Pointer to an array containing buckets
-    part* createPart(int partNum, node* next);
+    part* createPart(int partNum, part* next);
 public:
-    PartsTable(int bsize);  // Constructor
-    unsigned int hashSlinging(int key); // hash function
-    bool insert(int pNum, float cost, string name, string loc, string man);
+    PartsTable();  // Constructor
+    unsigned int hashFn(int pNum); // hash function
+    bool insert(string n, int num, string m, float cst,
+    string af1, string af2, string af3); // Table insert
     void printParts();
+    void displayPartInfo(int pNum);
     part* searchParts(int pNum);
 };
 #endif

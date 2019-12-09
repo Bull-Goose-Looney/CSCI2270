@@ -43,7 +43,7 @@ int main()
 
     cout<<endl;
 
-    int searchFor = 8;
+    int searchFor = 5;
     // SILVER TODO : Complete searchItem() function
     if(ht.searchItem(searchFor))
      {
